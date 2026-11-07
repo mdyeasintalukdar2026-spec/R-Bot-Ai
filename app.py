@@ -65,43 +65,44 @@ def bot_script():
 
             var renderServerUrl = "https://r-bot-ai.onrender.com";
 
-            // CSS Animations & Styles
+            // CSS Animations & Slow Motion Color Changing Effects
             var s = d.createElement('style');
             s.id = 'binary-ai-style';
-            s.innerHTML = '@keyframes badgeGlowPulse {' +
-                          '0% { box-shadow: 0 0 10px rgba(34,197,94,0.6), 0 0 20px rgba(34,197,94,0.3); border-color: #22c55e; }' +
-                          '50% { box-shadow: 0 0 20px rgba(56,189,248,0.9), 0 0 35px rgba(56,189,248,0.6); border-color: #38bdf8; }' +
-                          '100% { box-shadow: 0 0 10px rgba(34,197,94,0.6), 0 0 20px rgba(34,197,94,0.3); border-color: #22c55e; }' +
+            s.innerHTML = '@keyframes slowBorderColorChange {' +
+                          '0% { border-color: #22c55e; box-shadow: 0 0 15px rgba(34,197,94,0.7); }' +
+                          '33% { border-color: #38bdf8; box-shadow: 0 0 15px rgba(56,189,248,0.7); }' +
+                          '66% { border-color: #facc15; box-shadow: 0 0 15px rgba(250,204,21,0.7); }' +
+                          '100% { border-color: #22c55e; box-shadow: 0 0 15px rgba(34,197,94,0.7); }' +
                           '}' +
-                          '@keyframes hackerBarGlow {' +
-                          '0% { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.8); }' +
-                          '50% { border-color: #38bdf8; box-shadow: 0 0 30px rgba(56,189,248,0.9); }' +
-                          '100% { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.8); }' +
+                          '@keyframes slowTextColorChange {' +
+                          '0% { color: #22c55e; text-shadow: 0 0 10px rgba(34,197,94,0.8); }' +
+                          '33% { color: #38bdf8; text-shadow: 0 0 10px rgba(56,189,248,0.8); }' +
+                          '66% { color: #facc15; text-shadow: 0 0 10px rgba(250,204,21,0.8); }' +
+                          '100% { color: #22c55e; text-shadow: 0 0 10px rgba(34,197,94,0.8); }' +
                           '}' +
-                          '@keyframes laserMoveDown {' +
+                          '@keyframes laserMoveSmooth {' +
                           '0% { top: 0%; opacity: 0; }' +
                           '15% { opacity: 1; }' +
                           '85% { opacity: 1; }' +
                           '100% { top: 98%; opacity: 0; }' +
                           '}' +
-                          '@keyframes textFlicker {' +
-                          '0% { opacity: 0.7; }' +
-                          '50% { opacity: 1; text-shadow: 0 0 12px #22c55e; }' +
-                          '100% { opacity: 0.7; }' +
+                          '@keyframes panelGlow {' +
+                          '0% { border-color: #22c55e; box-shadow: 0 0 25px rgba(34,197,94,0.8); }' +
+                          '50% { border-color: #38bdf8; box-shadow: 0 0 35px rgba(56,189,248,0.9); }' +
+                          '100% { border-color: #22c55e; box-shadow: 0 0 25px rgba(34,197,94,0.8); }' +
                           '}';
             d.head.appendChild(s);
 
             var isExecutionLocked = false;
 
-            // Create Floating Circular Bot Icon with Bold 'R' in Green
+            // Create Floating Circular Bot Icon (Bold 'R', Thinner Border with Slow Color Animation, No 'SURESHOT')
             function createBotIcon() {
                 var wrap = d.getElementById('binary-ai-bot-btn') || d.createElement('div');
                 wrap.id = 'binary-ai-bot-btn';
-                wrap.style.cssText = 'position:fixed;bottom:90px;left:20px;width:72px;height:72px;border-radius:50%;background:#090919;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid #22c55e;animation:badgeGlowPulse 2s infinite ease-in-out;z-index:2147483647;cursor:pointer;box-sizing:border-box;font-family:sans-serif;user-select:none;';
+                wrap.style.cssText = 'position:fixed;bottom:90px;left:20px;width:72px;height:72px;border-radius:50%;background:#090919;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1.5px solid #22c55e;animation:slowBorderColorChange 6s infinite ease-in-out;z-index:2147483647;cursor:pointer;box-sizing:border-box;font-family:sans-serif;user-select:none;';
                 
-                wrap.innerHTML = '<div style="font-size:22px;font-weight:900;color:#22c55e;line-height:1;text-shadow:0 0 8px rgba(34,197,94,0.8);">R</div>' +
-                                 '<div style="font-size:8.5px;font-weight:700;color:#ffffff;letter-spacing:0.5px;margin-top:2px;">HACKING</div>' +
-                                 '<div style="font-size:7px;font-weight:600;color:#38bdf8;margin-top:1px;">SURESHOT</div>';
+                wrap.innerHTML = '<div style="font-size:26px;font-weight:900;line-height:1;animation:slowTextColorChange 6s infinite ease-in-out;">R</div>' +
+                                 '<div style="font-size:10px;font-weight:800;letter-spacing:0.5px;margin-top:3px;animation:slowTextColorChange 6s infinite ease-in-out;">HACKING</div>';
 
                 if(!d.body.contains(wrap)) d.body.appendChild(wrap);
 
@@ -132,56 +133,61 @@ def bot_script():
 
             createBotIcon();
 
-            // Scanning & Laser Sequence with Semi-Transparent Blurred Background
+            // Scanning & Laser Sequence with Blurred Background and 10%-100% Loader
             function startScanningSequence(badgeEl) {
                 // Semi-transparent blurred backdrop overlay
                 var overlay = d.createElement('div');
                 overlay.id = 'binary-ai-scanner-overlay';
-                overlay.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 6, 23, 0.35);backdrop-filter:blur(2px);z-index:2147483647;display:flex;align-items:center;justify-content:center;font-family:sans-serif;pointer-events:none;';
+                overlay.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 6, 23, 0.45);backdrop-filter:blur(3px);z-index:2147483647;display:flex;align-items:center;justify-content:center;font-family:sans-serif;pointer-events:none;';
 
-                // Laser Beam Line traversing top to bottom
+                // Thicker, clearer Laser Beam Line traversing top to bottom
                 var laserLine = d.createElement('div');
                 laserLine.id = 'binary-laser-line';
-                laserLine.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:6px;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.9), #ffffff, rgba(255,255,255,0.9), transparent);box-shadow:0 0 25px #ffffff, 0 0 50px #38bdf8;z-index:2147483648;pointer-events:none;animation:laserMoveDown 1.5s infinite linear;';
+                laserLine.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:8px;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.95), #ffffff, rgba(255,255,255,0.95), transparent);box-shadow:0 0 30px #ffffff, 0 0 60px #38bdf8;z-index:2147483648;pointer-events:none;animation:laserMoveSmooth 1.2s infinite linear;';
                 d.body.appendChild(laserLine);
 
-                // Center Progress Box
+                // Center Progress Box with slight backdrop blur on the box itself
                 var scanBox = d.createElement('div');
-                scanBox.style.cssText = 'width:280px;background:rgba(13, 2, 31, 0.88);border:2px solid #22c55e;border-radius:10px;padding:12px 15px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.8);animation:hackerBarGlow 1.5s infinite linear;pointer-events:auto;';
+                scanBox.style.cssText = 'width:290px;background:rgba(13, 2, 31, 0.82);backdrop-filter:blur(6px);border:2px solid #22c55e;border-radius:12px;padding:14px 16px;text-align:center;box-shadow:0 10px 35px rgba(0,0,0,0.85);animation:panelGlow 2s infinite linear;pointer-events:auto;';
                 
-                scanBox.innerHTML = '<div id="hacker-status-txt" style="font-size:12px;font-weight:900;color:#22c55e;letter-spacing:1px;margin-bottom:8px;animation:textFlicker 1s infinite;">SECURITY BREACH...</div>' +
-                                    '<div style="width:100%;height:14px;background:#030712;border-radius:7px;border:1px solid rgba(255,255,255,0.2);overflow:hidden;position:relative;">' +
-                                    '<div id="hacker-progress-fill" style="width:10%;height:100%;background:linear-gradient(90deg, #ef4444, #facc15, #22c55e);border-radius:7px;transition:width 0.3s ease-in-out;"></div>' +
+                scanBox.innerHTML = '<div id="hacker-status-txt" style="font-size:13px;font-weight:900;color:#22c55e;letter-spacing:1px;margin-bottom:10px;animation:slowTextColorChange 6s infinite;">SECURITY BREACH...</div>' +
+                                    '<div style="width:100%;height:15px;background:#030712;border-radius:8px;border:1px solid rgba(255,255,255,0.25);overflow:hidden;position:relative;">' +
+                                    '<div id="hacker-progress-fill" style="width:10%;height:100%;background:linear-gradient(90deg, #ef4444, #facc15, #22c55e);border-radius:8px;transition:width 0.4s ease-in-out;"></div>' +
                                     '</div>' +
-                                    '<div id="hacker-percent-txt" style="font-size:11px;font-weight:bold;color:#38bdf8;margin-top:6px;">10%</div>';
+                                    '<div id="hacker-percent-txt" style="font-size:12px;font-weight:bold;color:#38bdf8;margin-top:8px;">10%</div>';
 
                 overlay.appendChild(scanBox);
                 d.body.appendChild(overlay);
 
                 // Update badge to WAITING state
-                badgeEl.innerHTML = '<div style="font-size:20px;font-weight:900;color:#facc15;line-height:1;">R</div>' +
-                                    '<div style="font-size:8.5px;font-weight:700;color:#ffffff;margin-top:2px;">WAITING</div>' +
-                                    '<div style="font-size:7px;font-weight:600;color:#38bdf8;margin-top:1px;">SURESHOT</div>';
+                badgeEl.innerHTML = '<div style="font-size:24px;font-weight:900;color:#facc15;line-height:1;">R</div>' +
+                                    '<div style="font-size:10px;font-weight:800;color:#facc15;margin-top:3px;">WAITING</div>';
 
-                // Smooth progressive loading 10% -> 100% within ~5 seconds
-                var progressSteps = [
-                    {p: 30, text: "BYPASSING FIREWALL...", time: 1000},
-                    {p: 60, text: "ANALYZING CANDLES...", time: 2200},
-                    {p: 85, text: "AI CONFLUENCE...", time: 3600},
-                    {p: 100, text: "MARKET HACKED!", time: 4800}
+                // Progressive loading strictly 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 over 5 seconds
+                var progressValues = [20, 30, 40, 50, 60, 70, 80, 90, 100];
+                var statusTexts = [
+                    "BYPASSING FIREWALL...", 
+                    "SCANNING ASSETS...", 
+                    "ANALYZING CANDLES...", 
+                    "AI CONFLUENCE...", 
+                    "CALCULATING TREND...", 
+                    "CHECKING MOMENTUM...", 
+                    "BYPASSING SECURITY...", 
+                    "FINALIZING SIGNAL...", 
+                    "MARKET HACKED!"
                 ];
 
-                progressSteps.forEach(function(step){
+                progressValues.forEach(function(val, index){
                     setTimeout(function(){
                         if(d.getElementById('hacker-progress-fill')) {
-                            d.getElementById('hacker-status-txt').innerText = step.text;
-                            d.getElementById('hacker-progress-fill').style.width = step.p + '%';
-                            d.getElementById('hacker-percent-txt').innerText = step.p + '%';
+                            d.getElementById('hacker-status-txt').innerText = statusTexts[index];
+                            d.getElementById('hacker-progress-fill').style.width = val + '%';
+                            d.getElementById('hacker-percent-txt').innerText = val + '%';
                         }
-                    }, step.time);
+                    }, (index + 1) * 500);
                 });
 
-                // Fetch final signal and execute trade after ~5.2 seconds
+                // Fetch final signal and execute trade after 5 seconds
                 setTimeout(function(){
                     fetch(renderServerUrl + '/signal?t=' + Date.now())
                     .then(function(r){ return r.json(); })
@@ -194,21 +200,19 @@ def bot_script():
                         var laser = d.getElementById('binary-laser-line');
                         if(laser) laser.remove();
 
-                        // Update badge with UP / DOWN result
-                        badgeEl.innerHTML = '<div style="font-size:20px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';line-height:1;">R</div>' +
-                                            '<div style="font-size:9px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-top:2px;">' + (isCall ? 'UP' : 'DOWN') + '</div>' +
-                                            '<div style="font-size:7px;font-weight:600;color:#38bdf8;margin-top:1px;">SURESHOT</div>';
+                        // Update badge with UP / DOWN result (Larger size)
+                        badgeEl.innerHTML = '<div style="font-size:24px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';line-height:1;">R</div>' +
+                                            '<div style="font-size:11px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-top:3px;">' + (isCall ? 'UP' : 'DOWN') + '</div>';
 
                         executeStrictSingleTrade(isCall);
 
-                        // Reset badge back to normal after 2 seconds
+                        // Reset badge back to normal after exactly 2 seconds
                         setTimeout(function(){
-                            badgeEl.innerHTML = '<div style="font-size:22px;font-weight:900;color:#22c55e;line-height:1;text-shadow:0 0 8px rgba(34,197,94,0.8);">R</div>' +
-                                                '<div style="font-size:8.5px;font-weight:700;color:#ffffff;letter-spacing:0.5px;margin-top:2px;">HACKING</div>' +
-                                                '<div style="font-size:7px;font-weight:600;color:#38bdf8;margin-top:1px;">SURESHOT</div>';
-                        }, 2500);
+                            badgeEl.innerHTML = '<div style="font-size:26px;font-weight:900;line-height:1;animation:slowTextColorChange 6s infinite ease-in-out;">R</div>' +
+                                                '<div style="font-size:10px;font-weight:800;letter-spacing:0.5px;margin-top:3px;animation:slowTextColorChange 6s infinite ease-in-out;">HACKING</div>';
+                        }, 2000);
                     });
-                }, 5200);
+                }, 5100);
             }
 
             function executeStrictSingleTrade(isCall) {
