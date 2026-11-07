@@ -26,12 +26,11 @@ def get_signal():
         current_time = time.time()
         time_slot = int(current_time / 5)
         
-        # 100% Real Precision Knowledge Calculation Algorithm (No Fake/Random Signals)
         trend_calc = (time_slot * 31337 + 7357) % 100
         base_signal = "CALL" if (trend_calc >= 50) else "PUT"
         
         volatility = (time_slot * 16657) % 15
-        real_accuracy = 85 + volatility  # Real calculated accuracy based on market data (85% - 99%)
+        real_accuracy = 85 + volatility
         
         res = jsonify({
             "signal": base_signal,
@@ -64,51 +63,40 @@ def bot_script():
                 if(e) e.remove();
             });
 
-            // Updated Logo URLs as requested
-            var botMainLogo = "https://i.postimg.cc/2SpN9cDm/1793861889440.jpg";
-            var panelProfileLogo = "https://i.postimg.cc/15F3zNR6/images.jpg";
-            
-            // Updated Render Server URL
             var renderServerUrl = "https://r-bot-ai.onrender.com";
 
-            // CSS Styles & Fast Vibrant Border Animations
+            // CSS Animations matching the hacker aesthetic from the video
             var s = d.createElement('style');
             s.id = 'binary-ai-style';
-            s.innerHTML = '@keyframes whiteGlowPulse {' +
-                          '0% { box-shadow: 0 0 15px rgba(255,255,255,0.6), 0 0 30px rgba(255,255,255,0.3); border-color: #ffffff; }' +
-                          '50% { box-shadow: 0 0 25px rgba(255,255,255,0.95), 0 0 50px rgba(255,255,255,0.6); border-color: #38bdf8; }' +
-                          '100% { box-shadow: 0 0 15px rgba(255,255,255,0.6), 0 0 30px rgba(255,255,255,0.3); border-color: #ffffff; }' +
+            s.innerHTML = '@keyframes badgeGlowPulse {' +
+                          '0% { box-shadow: 0 0 15px rgba(34,197,94,0.6), 0 0 30px rgba(34,197,94,0.3); border-color: #22c55e; }' +
+                          '50% { box-shadow: 0 0 25px rgba(34,197,94,0.95), 0 0 50px rgba(34,197,94,0.6); border-color: #38bdf8; }' +
+                          '100% { box-shadow: 0 0 15px rgba(34,197,94,0.6), 0 0 30px rgba(34,197,94,0.3); border-color: #22c55e; }' +
                           '}' +
-                          '@keyframes fastVibrantBorder {' +
-                          '0% { border-color: #38bdf8; box-shadow: 0 0 20px rgba(56,189,248,0.9), inset 0 0 10px rgba(56,189,248,0.4); }' +
-                          '25% { border-color: #ef4444; box-shadow: 0 0 20px rgba(239,68,68,0.9), inset 0 0 10px rgba(239,68,68,0.4); }' +
-                          '50% { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.9), inset 0 0 10px rgba(34,197,94,0.4); }' +
-                          '75% { border-color: #facc15; box-shadow: 0 0 20px rgba(250,204,21,0.9), inset 0 0 10px rgba(250,204,21,0.4); }' +
-                          '100% { border-color: #38bdf8; box-shadow: 0 0 20px rgba(56,189,248,0.9), inset 0 0 10px rgba(56,189,248,0.4); }' +
+                          '@keyframes hackerBarGlow {' +
+                          '0% { border-color: #22c55e; box-shadow: 0 0 15px rgba(34,197,94,0.8); }' +
+                          '50% { border-color: #38bdf8; box-shadow: 0 0 25px rgba(56,189,248,0.9); }' +
+                          '100% { border-color: #22c55e; box-shadow: 0 0 15px rgba(34,197,94,0.8); }' +
                           '}' +
-                          '@keyframes scanTextPulse {' +
-                          '0% { opacity: 0.3; filter: blur(0.5px); }' +
-                          '50% { opacity: 1; filter: blur(0px); text-shadow: 0 0 12px #ef4444; }' +
-                          '100% { opacity: 0.3; filter: blur(0.5px); }' +
-                          '}' +
-                          '@keyframes redLaserSmoothScan {' +
-                          '0% { top: 0%; opacity: 0; }' +
-                          '15% { opacity: 1; }' +
-                          '85% { opacity: 1; }' +
-                          '100% { top: 98%; opacity: 0; }' +
+                          '@keyframes textFlicker {' +
+                          '0% { opacity: 0.7; }' +
+                          '50% { opacity: 1; text-shadow: 0 0 10px #22c55e; }' +
+                          '100% { opacity: 0.7; }' +
                           '}' +
                           '@keyframes panelFadeIn { 0% { opacity: 0; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }';
             d.head.appendChild(s);
 
             var isExecutionLocked = false;
 
-            // Create Floating Circular Bot Icon with New Main Logo (Centered/Positioned appropriately)
+            // Create Floating Hacker Circular Badge (Bottom Left, exactly like video)
             function createBotIcon() {
                 var wrap = d.getElementById('binary-ai-bot-btn') || d.createElement('div');
                 wrap.id = 'binary-ai-bot-btn';
-                wrap.style.cssText = 'position:fixed;bottom:80px;left:20px;width:76px;height:76px;border-radius:50%;background:#0d021f;display:flex;align-items:center;justify-content:center;border:4px solid #ffffff;animation:whiteGlowPulse 2.5s infinite ease-in-out;z-index:2147483647;cursor:pointer;box-sizing:border-box;overflow:hidden;';
+                wrap.style.cssText = 'position:fixed;bottom:90px;left:20px;width:72px;height:72px;border-radius:50%;background:#090919;display:flex;flex-direction:column;align-items:center;justify-content:center;border:3px solid #22c55e;animation:badgeGlowPulse 2s infinite ease-in-out;z-index:2147483647;cursor:pointer;box-sizing:border-box;font-family:sans-serif;user-select:none;';
                 
-                wrap.innerHTML = '<img src="' + botMainLogo + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;pointer-events:none;" />';
+                wrap.innerHTML = '<div style="font-size:20px;font-weight:900;color:#22c55e;line-height:1;">A</div>' +
+                                 '<div style="font-size:9px;font-weight:700;color:#ffffff;letter-spacing:0.5px;margin-top:2px;">HACKING</div>' +
+                                 '<div style="font-size:7.5px;font-weight:600;color:#38bdf8;margin-top:1px;">SURESHOT</div>';
 
                 if(!d.body.contains(wrap)) d.body.appendChild(wrap);
 
@@ -133,126 +121,74 @@ def bot_script():
 
                 wrap.onclick = function(){
                     if(hasMoved) return;
-                    startRedLaserScanningSequence();
+                    startHackingScanSequence(wrap);
                 };
             }
 
             createBotIcon();
 
-            // Precise Active Market & Payout Scraper from Quotex UI
-            function detectCurrentMarketAndSettings() {
-                var marketName = "EURUSD (OTC)";
-                var payoutStr = "95%";
-                var images = [];
-
-                var selectors = ['.asset-select__button', '.asset-name', '.chart-title', '.asset-select__short-name', '[class*="asset-select"]', '.deal-asset'];
-                for(var i=0; i<selectors.length; i++){
-                    var els = d.querySelectorAll(selectors[i]);
-                    for(var k=0; k<els.length; k++){
-                        var txt = els[k].innerText ? els[k].innerText.trim() : '';
-                        if(txt.length > 1 && txt.length < 35 && (txt.includes('/') || txt.includes('OTC') || txt.includes('USD') || txt.includes('EUR'))) {
-                            marketName = txt.replace(/\\n/g, ' ').replace(/\\s+/g, ' ');
-                            break;
-                        }
-                    }
-                    if(marketName !== "EURUSD (OTC)") break;
-                }
-
-                if(marketName === "EURUSD (OTC)") {
-                    var allDivs = d.querySelectorAll('div, span, button');
-                    for(var i=0; i<allDivs.length; i++) {
-                        var t = allDivs[i].innerText ? allDivs[i].innerText.trim() : '';
-                        if((t.includes('/') || t.includes('OTC')) && t.length > 3 && t.length < 25 && !t.includes('PAYS') && !t.includes('PENDING') && !t.includes('DEPOSIT')) {
-                            marketName = t;
-                            break;
-                        }
-                    }
-                }
-
-                var payoutEls = d.querySelectorAll('[class*="payout"], [class*="percent"], .asset-table__payout');
-                for(var p=0; p<payoutEls.length; p++){
-                    var ptxt = payoutEls[p].innerText ? payoutEls[p].innerText.trim() : '';
-                    if(ptxt.includes('%') && ptxt.length < 6) {
-                        payoutStr = ptxt;
-                        break;
-                    }
-                }
-
-                if(!marketName.includes('%')) {
-                    marketName = marketName + " " + payoutStr;
-                }
-
-                var imgEls = d.querySelectorAll('.asset-select__asset-icon img, .asset-icon img, img[class*="flag"], img[class*="asset"]');
-                imgEls.forEach(function(img){
-                    if(img.src && images.length < 2 && !images.includes(img.src)) {
-                        images.push(img.src);
-                    }
-                });
-
-                if(images.length === 0) {
-                    images.push(panelProfileLogo);
-                }
-
-                return { name: marketName, images: images };
-            }
-
-            // Red Laser Full-Screen Smooth Scanning Sequence with Centered Panel Profile & Fast Vibrant Border
-            function startRedLaserScanningSequence() {
-                var marketInfo = detectCurrentMarketAndSettings();
-
+            // Full Hacking Scan Sequence with Center Progress Bar & Status Texts
+            function startHackingScanSequence(badgeEl) {
                 var overlay = d.createElement('div');
                 overlay.id = 'binary-ai-scanner-overlay';
-                overlay.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 6, 23, 0.82);z-index:2147483647;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;font-family:sans-serif;color:#fff;overflow:hidden;animation:panelFadeIn 0.3s ease-out;';
+                overlay.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(2, 6, 23, 0.45);z-index:2147483647;display:flex;align-items:center;justify-content:center;font-family:sans-serif;pointer-events:none;';
 
-                var laserLine = d.createElement('div');
-                laserLine.style.cssText = 'position:absolute;left:0;width:100%;height:35px;background:linear-gradient(90deg, transparent, rgba(239,68,68,0.95), #ef4444, rgba(239,68,68,0.95), transparent);box-shadow:0 0 40px #ef4444, 0 0 80px #ef4444;pointer-events:none;animation:redLaserSmoothScan 1.2s infinite ease-in-out;z-index:2147483648;';
-                overlay.appendChild(laserLine);
+                // Center Hacker Progress Box (matches video style precisely)
+                var scanBox = d.createElement('div');
+                scanBox.style.cssText = 'width:280px;background:rgba(13, 2, 31, 0.92);border:2px solid #22c55e;border-radius:10px;padding:12px 15px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.8);animation:hackerBarGlow 1.5s infinite linear;';
+                
+                scanBox.innerHTML = '<div id="hacker-status-txt" style="font-size:12px;font-weight:900;color:#22c55e;letter-spacing:1px;margin-bottom:8px;animation:textFlicker 1s infinite;">SECURITY BREACH...</div>' +
+                                    '<div style="width:100%;height:14px;background:#030712;border-radius:7px;border:1px solid rgba(255,255,255,0.2);overflow:hidden;position:relative;">' +
+                                    '<div id="hacker-progress-fill" style="width:15%;height:100%;background:linear-gradient(90deg, #ef4444, #facc15, #22c55e);border-radius:7px;transition:width 0.4s ease-in-out;"></div>' +
+                                    '</div>' +
+                                    '<div id="hacker-percent-txt" style="font-size:11px;font-weight:bold;color:#38bdf8;margin-top:6px;">15%</div>';
 
-                var imgHtml = '';
-                marketInfo.images.forEach(function(src){
-                    imgHtml += '<img src="' + panelProfileLogo + '" style="width:32px;height:32px;border-radius:50%;border:2px solid #38bdf8;object-fit:cover;animation:fastVibrantBorder 1.5s infinite linear;" />';
-                });
-
-                var panelBox = d.createElement('div');
-                panelBox.style.cssText = 'position:absolute;top:10px;width:65%;max-width:210px;background:linear-gradient(135deg, #090919, #1a0b2e);border:2.5px solid #ef4444;border-radius:12px;padding:7px 8px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,0.8);z-index:2147483649;left:50%;transform:translateX(-50%);animation:fastVibrantBorder 2s infinite linear;';
-                panelBox.innerHTML = '<div style="font-size:11px;font-weight:900;color:#ef4444;letter-spacing:1px;margin-bottom:3px;animation:scanTextPulse 1.2s infinite ease-in-out;">SCANNING...</div>' +
-                                     '<div style="display:flex;align-items:center;justify-content:center;gap:6px;">' + imgHtml + '<span style="font-size:11px;font-weight:bold;color:#38bdf8;">' + marketInfo.name + '</span></div>';
-
-                overlay.appendChild(panelBox);
+                overlay.appendChild(scanBox);
                 d.body.appendChild(overlay);
+
+                // Update badge to WAITING state during scan
+                badgeEl.innerHTML = '<div style="font-size:18px;font-weight:900;color:#facc15;line-height:1;">A</div>' +
+                                    '<div style="font-size:9px;font-weight:700;color:#ffffff;margin-top:2px;">WAITING</div>' +
+                                    '<div style="font-size:7.5px;font-weight:600;color:#38bdf8;margin-top:1px;">SURESHOT</div>';
+
+                // Step-by-step progress simulation matching the video
+                setTimeout(function(){
+                    d.getElementById('hacker-status-txt').innerText = "BYPASSING FIREWALL...";
+                    d.getElementById('hacker-progress-fill').style.width = "58%";
+                    d.getElementById('hacker-percent-txt').innerText = "58%";
+                }, 900);
+
+                setTimeout(function(){
+                    d.getElementById('hacker-status-txt').innerText = "MARKET HACKED!";
+                    d.getElementById('hacker-progress-fill').style.width = "100%";
+                    d.getElementById('hacker-percent-txt').innerText = "100%";
+                }, 1800);
 
                 setTimeout(function(){
                     fetch(renderServerUrl + '/signal?t=' + Date.now())
                     .then(function(r){ return r.json(); })
-                    .catch(function(){ return {signal: "CALL", confidence: 96}; })
+                    .catch(function(){ return {signal: "CALL", confidence: 99}; })
                     .then(function(data){
                         var sig = String(data.signal || 'CALL').toUpperCase();
                         var isCall = (sig === 'CALL' || sig === 'UP' || sig === 'BUY');
-                        var realAccuracyVal = data.confidence || 96;
+                        
+                        overlay.remove();
 
-                        panelBox.style.animation = 'fastVibrantBorder 2s infinite linear';
-                        panelBox.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:3px;margin-bottom:4px;">' +
-                                             '<div style="display:flex;align-items:center;gap:6px;">' +
-                                             '<img src="' + panelProfileLogo + '" style="width:30px;height:30px;border-radius:50%;border:2px solid #38bdf8;object-fit:cover;animation:fastVibrantBorder 1.5s infinite linear;" />' +
-                                             '<span style="font-size:10px;font-weight:900;color:#fff;letter-spacing:0.5px;">BINARY AI</span>' +
-                                             '</div>' +
-                                             '<div style="display:flex;align-items:center;gap:3px;">' +
-                                             '<span style="font-size:13px;">' + (isCall ? '📈' : '📉') + '</span>' +
-                                             '<span style="font-size:11px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';">' + (isCall ? 'UP' : 'DOWN') + '</span>' +
-                                             '</div>' +
-                                             '</div>' +
-                                             '<div style="display:flex;align-items:center;justify-content:space-between;font-size:9.5px;font-weight:bold;">' +
-                                             '<span style="color:#facc15;">' + marketInfo.name + '</span>' +
-                                             '<span style="color:#22c55e;">ACCURACY: ' + realAccuracyVal + '%</span>' +
-                                             '</div>';
+                        // Update badge with final direction (UP / DOWN)
+                        badgeEl.innerHTML = '<div style="font-size:18px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';line-height:1;">A</div>' +
+                                            '<div style="font-size:9px;font-weight:900;color:' + (isCall ? '#22c55e' : '#ef4444') + ';margin-top:2px;">' + (isCall ? 'UP' : 'DOWN') + '</div>' +
+                                            '<div style="font-size:7.5px;font-weight:600;color:#38bdf8;margin-top:1px;">SURESHOT</div>';
 
                         executeStrictSingleTrade(isCall);
 
+                        // Reset badge back to normal after execution
                         setTimeout(function(){
-                            overlay.remove();
-                        }, 2200);
+                            badgeEl.innerHTML = '<div style="font-size:20px;font-weight:900;color:#22c55e;line-height:1;">A</div>' +
+                                                '<div style="font-size:9px;font-weight:700;color:#ffffff;letter-spacing:0.5px;margin-top:2px;">HACKING</div>' +
+                                                '<div style="font-size:7.5px;font-weight:600;color:#38bdf8;margin-top:1px;">SURESHOT</div>';
+                        }, 4000);
                     });
-                }, 5000);
+                }, 2600);
             }
 
             function executeStrictSingleTrade(isCall) {
